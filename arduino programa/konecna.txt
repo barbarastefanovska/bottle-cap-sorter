@@ -1,0 +1,181 @@
+#include <Servo.h>
+
+Servo myservo1;   // create servo object to control a servo
+Servo myservo3; 
+Servo myservo5;
+Servo myservo2;
+Servo myservo4;
+Servo myservo6;
+
+int pos1 = 0;    // variable to store the servo position
+int pos3 = 0;
+int pos5 = 0;
+int pos2 = 0;
+int pos4 = 0;
+int pos6 = 0;
+
+
+void PositionArmToGrab(){
+  for (pos4 = 0; pos4<=136; pos4 += 1) {
+    myservo4.write(pos4);
+    delay(15);
+  }
+}
+void GrabTheCap(){
+  for (pos6 = 0; pos6<=55; pos6 += 1) {
+    myservo6.write(pos6);
+    delay(15);
+  }
+}
+void RaiseTheArm(){
+  for(pos4 = 136; pos4>=0; pos4 -= 1){
+    myservo4.write(pos4);
+    delay(15);
+  }
+}
+void Move45(){
+  for(pos1 = 0; pos1<=45; pos1 += 1){
+    myservo1.write(pos1);
+    delay(15);
+  }
+}
+void Move90(){
+  for(pos1 = 0; pos1<=90; pos1 += 1){
+    myservo1.write(pos1);
+    delay(15);
+  }
+}
+void Move135(){
+  for(pos1 = 0; pos1<=135; pos1 += 1){
+    myservo1.write(pos1);
+    delay(15);
+  }
+}
+void LowerTheArm(){
+  for(pos4 = 0; pos4<=136; pos4 += 1){
+    myservo4.write(pos4);
+    delay(15);
+  }
+}
+void ReleaseTheCap(){
+  for(pos6 = 55; pos6>=0; pos6 -= 1){
+    myservo6.write(pos6);
+    delay(15);
+  }
+}
+void InitialPosition(){
+    pos1 = 0;
+    pos3 = 46;
+    pos5 = 26;
+    pos2 = 80;
+    pos4 = 0;    // do 136
+    pos6 = 0;
+    myservo1.write(pos1);
+    myservo2.write(pos2);
+    myservo3.write(pos3);
+    myservo4.write(pos4);
+    myservo5.write(pos5);
+    myservo6.write(pos6);
+    delay(15);
+  }
+
+void setup() {
+  delay(5000);
+  myservo1.attach(10);  
+  myservo3.attach(11);
+  myservo5.attach(9);
+  myservo2.attach(6);
+  myservo4.attach(5);
+  myservo6.attach(3);
+  pos1 = 0;
+  pos3 = 46;
+  pos5 = 26;
+  pos2 = 80;
+  pos4 = 0;    // do 136
+  pos6 = 0;
+  InitialPosition();
+  delay(50);
+}
+void loop() {
+  // proba
+  //delay(2000);
+  //PositionArmToGrab();
+  //delay(1000);
+  //GrabTheCap();
+  //delay(1000);
+  //RaiseTheArm();
+  //delay(15);
+  //Move45();
+  //delay(15);
+  //LowerTheArm();
+  //delay(15);
+  //ReleaseTheCap();
+  //delay(15);
+  //RaiseTheArm();
+  //delay(15);
+  //InitialPosition();
+  //delay(2000);
+  
+  //so signali ovie se zemeni kako primer, vie kje vidite koi se slobodni
+  if (digitalRead(8)==HIGH and digitalRead(4)==HIGH and digitalRead(7)==HIGH){  // za zholto = 45 stepeni
+    PositionArmToGrab();
+  delay(1000);
+  GrabTheCap();
+  delay(1000);
+  RaiseTheArm();
+  delay(15);
+  Move45();
+  delay(15);
+  LowerTheArm();
+  delay(15);
+  ReleaseTheCap();
+  delay(15);
+  RaiseTheArm();
+  delay(15);
+  InitialPosition();
+  delay(2000);
+    
+  }
+  if (digitalRead(8)==HIGH and digitalRead(4)==HIGH and digitalRead(7)==LOW){  // za plavo = 90 stepeni
+    PositionArmToGrab();
+  delay(1000);
+  GrabTheCap();
+  delay(1000);
+  RaiseTheArm();
+  delay(15);
+  Move90();
+  delay(15);
+  LowerTheArm();
+  delay(15);
+  ReleaseTheCap();
+  delay(15);
+  RaiseTheArm();
+  delay(15);
+  InitialPosition();
+  delay(2000);
+    
+  }
+
+if (digitalRead(8)==HIGH and digitalRead(4)==LOW and digitalRead(7)==LOW){  // za belo = 135 stepeni
+    PositionArmToGrab();
+  delay(1000);
+  GrabTheCap();
+  delay(1000);
+  RaiseTheArm();
+  delay(15);
+  Move135();
+  delay(15);
+  LowerTheArm();
+  delay(15);
+  ReleaseTheCap();
+  delay(15);
+  RaiseTheArm();
+  delay(15);
+  InitialPosition();
+  delay(2000);
+    
+  }
+
+
+  
+}
